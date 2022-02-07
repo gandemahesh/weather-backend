@@ -1,7 +1,29 @@
 
 const express = require('express');
 const app = express();
+const key = "eyJ1c2VyIjoicmFqYWxpbnYiLCJwYXNzd29yZCI6InBhc3N3b3JkIiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.rPaPZqtAUvJfaEgZp7y44POhq84ZMpYgY9TPkHah_Gk"
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
+app.post('/v1/auth', (req, res) => {
+    // res.send('Auth Success')
+    username = req.body.username
+    password = req.body.password
+    if (username == "mahesh" && password == "password"){
+      token = {
+        "jwt" : key,
+        //"expires": expiry 
+     }
+     res.json(token)
   
+  }
+    })
+
+  app.get('/v1/hello', (req, res) => {
+      res.send('Hello World!')
+      })
+    
 
 app.get('/get/weather', function(request, response) {
   response.json({
